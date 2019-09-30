@@ -24,10 +24,10 @@ namespace Elasticsearch.Basic.Controllers
         }
 
         [HttpPost]
-        public ActionResult<BaseResponseModel> IndexDocument(User user)
+        public async Task<ActionResult<BaseResponseModel>> IndexDocument(User user)
         {
             //var response = _elasticsearchService.IndexDocument(user);
-            var response = _elasticsearchService.CreateIndex();
+            var response = await _elasticsearchService.CreateIndexAsync();
 
             return new BaseResponseModel() { Success = response };
         }
@@ -41,9 +41,9 @@ namespace Elasticsearch.Basic.Controllers
         //}
 
         [HttpGet]
-        public IReadOnlyCollection<User> Search(string query)
+        public async Task<UserSuggestResponse> Search(string query)
         {
-            var response =  _elasticsearchService.Search(query);
+            var response = await _elasticsearchService.SearchAsync(query);
 
             return response;
         }

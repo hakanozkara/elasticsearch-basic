@@ -11,8 +11,11 @@ namespace Elasticsearch.Basic.Services
     {
         bool IndexDocument(User user);
         Task<bool> IndexDocumentAsync(User user);
+        Task<bool> IndexDocumentBulkAsync(List<User> users);
         IReadOnlyCollection<User> Search(string query);
+        Task<UserSuggestResponse> SearchAsync(string keyword);
         bool CreateIndex();
+        Task<bool> CreateIndexAsync();
 
 
     }
